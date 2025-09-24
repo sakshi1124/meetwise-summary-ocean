@@ -2,41 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* MeetWise Beach-Inspired Design System */
 
 @layer base {
   :root {
+    /* Beach Color Palette */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 210 15% 20%;
+    
+    /* Ocean Blue Primary */
+    --primary: 207 56% 57%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 207 56% 67%;
+    
+    /* Sandy Beige Secondary */
+    --secondary: 39 77% 83%;
+    --secondary-foreground: 210 15% 20%;
+    
+    /* Teal Accent */
+    --accent: 178 100% 41%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Soft Blues */
+    --muted: 195 53% 79%;
+    --muted-foreground: 210 15% 45%;
+    
+    /* Card Backgrounds */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 210 15% 20%;
+    --card-glass: 0 0% 100% / 0.8;
+    
+    /* Interactive Elements */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --popover-foreground: 210 15% 20%;
+    
+    --border: 195 53% 90%;
+    --input: 195 53% 95%;
+    --ring: 207 56% 57%;
+    
+    /* Gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(207 56% 57%), hsl(178 100% 41%));
+    --gradient-beach: linear-gradient(135deg, hsl(39 77% 88%), hsl(195 53% 85%));
+    --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.1), hsl(0 0% 100% / 0.05));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(207 56% 57% / 0.1);
+    --shadow-glass: 0 8px 32px hsl(207 56% 57% / 0.15);
+    --shadow-hover: 0 8px 25px hsl(207 56% 57% / 0.2);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --destructive-foreground: 0 0% 100%;
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +122,105 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(195 53% 96%), hsl(39 77% 96%));
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Glass morphism effects */
+  .glass-card {
+    @apply backdrop-blur-md bg-card-glass border border-border/20 shadow-glass;
+  }
+  
+  .glass-button {
+    @apply backdrop-blur-sm bg-white/10 border border-white/20 hover:bg-white/20;
+    transition: var(--transition-smooth);
+  }
+  
+  /* Ocean gradient effects */
+  .ocean-gradient {
+    background: var(--gradient-ocean);
+  }
+  
+  .beach-gradient {
+    background: var(--gradient-beach);
+  }
+  
+  /* Hover animations */
+  .hover-float {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-float:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  /* Meeting card styles */
+  .meeting-card {
+    @apply glass-card hover-float rounded-2xl p-6 cursor-pointer;
+    transition: var(--transition-bounce);
+  }
+  
+  .meeting-card:hover {
+    @apply border-primary/30;
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+@layer utilities {
+  /* Text gradients */
+  .text-gradient {
+    background: var(--gradient-ocean);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
