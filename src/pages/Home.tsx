@@ -23,33 +23,10 @@ const Home = () => {
         // Replace with actual API call
         // const response = await fetch('/api/meetings');
         // const data = await response.json();
+        // setMeetings(data);
         
-        // Temporary mock data - remove when backend is connected
-        const mockMeetings: Meeting[] = [
-          {
-            id: '1',
-            title: 'Team Standup Meeting',
-            date: '2024-01-15',
-            time: '09:00',
-            status: 'processed'
-          },
-          {
-            id: '2', 
-            title: 'Client Strategy Session',
-            date: '2024-01-14',
-            time: '14:30',
-            status: 'processed'
-          },
-          {
-            id: '3',
-            title: 'Product Planning',
-            date: '2024-01-13',
-            time: '11:00',
-            status: 'pending'
-          }
-        ];
-        
-        setMeetings(mockMeetings);
+        // Start with empty meetings array - users will add their own
+        setMeetings([]);
       } catch (error) {
         console.error('Error fetching meetings:', error);
       } finally {
